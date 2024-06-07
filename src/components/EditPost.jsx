@@ -1,8 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-// import { postContext } from "../context/PostContextProvider";
 import { Button, TextField } from "@mui/material";
-import Comments from "./Comments";
+
 import { PostContext } from "../context/PostContextProvider";
 
 const EditPost = () => {
@@ -69,7 +68,6 @@ const EditPost = () => {
       <Button onClick={handleClick} variant="contained">
         SAVE
       </Button>
-      <Comments productId={id} />
     </div>
   );
 };

@@ -1,59 +1,3 @@
-// import axios from "axios";
-// import { createContext, useState } from "react";
-
-// export const postContext = createContext();
-// const PostContextProvider = ({ children }) => {
-//   const [posts, setPosts] = useState([]);
-//   const [onePost, setOnePost] = useState({});
-//   const [comments, setComments] = useState([]);
-//   //!CREATE
-//   const addPost = async (post) => {
-//     await axios.post(API, post);
-//   };
-//   //!get
-//   const getPosts = async () => {
-//     const { data } = await axios(API);
-//     setPosts(data);
-//   };
-//   const deletePost = async (id) => {
-//     await axios.delete(`${API}/${id}`);
-//     getPosts();
-//   };
-
-//   //! getOnePost
-//   const getOnePost = async (id) => {
-//     const { data } = await axios(`${API}/${id}`);
-//     setOnePost(data);
-//   };
-//   const editPost = async (id, editedPost) => {
-//     await axios.patch(`${API}/${id}`, editedPost);
-//   };
-
-//   const addComment = async (productId, comment) => {
-//     await axios.post(`${API}/${productId}/comments`, comment);
-//     getComments(productId);
-//   };
-
-//   const getComments = async (productId) => {
-//     const { data } = await axios(`${API}/${productId}/comments`);
-//     setComments(data);
-//   };
-//   const values = {
-//     addPost,
-//     posts,
-//     getPosts,
-//     deletePost,
-//     getOnePost,
-//     onePost,
-//     editPost,
-//     addComment,
-//     comments,
-//     getComments,
-//   };
-//   return <postContext.Provider value={values}>{children}</postContext.Provider>;
-// };
-// export default PostContextProvider;
-
 import axios from "axios";
 import { createContext, useContext, useReducer } from "react";
 import { API } from "../helpers/const";
@@ -104,6 +48,19 @@ const PostContextProvider = ({ children }) => {
     await axios.patch(`${API}/${id}`, editedPost);
     getPosts();
   };
+  const addComment = async (postID, comment) => {
+    await axios.post(`${API}/${postID}/comments`, comment);
+    getComments(postID);
+  };
+
+  const getComments = async (postID) => {
+    try {
+      const url = `${API}/${postID}/comments`;
+
+      const { data } = await axios.get(url);
+      // dispatch({ type: actionTypes.SET_COMMENTS, payload: data });
+    } catch (error) {}
+  };
 
   const values = {
     addPost,
@@ -113,6 +70,8 @@ const PostContextProvider = ({ children }) => {
     getOnePost,
     onePost: state.onePost,
     editPost,
+    addComment,
+    getComments,
   };
 
   return <PostContext.Provider value={values}>{children}</PostContext.Provider>;

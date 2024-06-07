@@ -2,6 +2,8 @@ import { Button } from "@mui/material";
 import React, { useContext } from "react";
 import { NavLink } from "react-router-dom";
 import { PostContext } from "../context/PostContextProvider";
+import Comments from "./Comments";
+import PostDetails from "./PostDetails";
 
 const PostForm = ({ title, img, author, content, id }) => {
   const { deletePost } = useContext(PostContext);
@@ -17,6 +19,10 @@ const PostForm = ({ title, img, author, content, id }) => {
       <NavLink to={`/edit/${id}`}>
         <Button variant="contained">EDIT</Button>
       </NavLink>
+      <NavLink to={`/post/${PostDetails.id}`}>
+        <Button variant="contained">Details</Button>
+      </NavLink>
+      <Comments postId={id} />
     </div>
   );
 };

@@ -2,21 +2,21 @@ import React, { useState, useEffect, useContext } from "react";
 import { TextField, Button } from "@mui/material";
 import { PostContext } from "../context/PostContextProvider";
 
-const Comments = ({ productId }) => {
+const Comments = ({ postId }) => {
   const { onePost, getOnePost, addComment } = useContext(PostContext);
   console.log(onePost);
   const [newComment, setNewComment] = useState("");
 
   useEffect(() => {
-    getOnePost(productId);
-  }, [productId]);
+    getOnePost(postId);
+  }, [postId]);
 
   const handleAddComment = () => {
     if (!newComment) {
       alert("Введите комментарий!");
       return;
     }
-    addComment(productId, { text: newComment });
+    addComment(postId, { text: newComment });
     setNewComment("");
   };
 
