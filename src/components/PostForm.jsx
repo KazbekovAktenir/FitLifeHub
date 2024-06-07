@@ -1,10 +1,10 @@
 import { Button } from "@mui/material";
 import React, { useContext } from "react";
-import { postContext } from "../context/PostContextProvider";
 import { NavLink } from "react-router-dom";
+import { PostContext } from "../context/PostContextProvider";
 
 const PostForm = ({ title, img, author, content, id }) => {
-  const { deletePost } = useContext(postContext);
+  const { deletePost } = useContext(PostContext);
   return (
     <div>
       <h3>{title}</h3>

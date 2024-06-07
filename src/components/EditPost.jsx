@@ -1,11 +1,13 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { postContext } from "../context/PostContextProvider";
+// import { postContext } from "../context/PostContextProvider";
 import { Button, TextField } from "@mui/material";
+import Comments from "./Comments";
+import { PostContext } from "../context/PostContextProvider";
 
 const EditPost = () => {
   const { id } = useParams();
-  const { getOnePost, onePost, editPost } = useContext(postContext);
+  const { getOnePost, onePost, editPost } = useContext(PostContext);
   useEffect(() => {
     getOnePost(id);
   }, [id]);
@@ -41,28 +43,33 @@ const EditPost = () => {
         id="outlined-basic"
         label="title"
         variant="outlined"
+        value={title}
       />
       <TextField
         onChange={(e) => setImg(e.target.value)}
         id="outlined-basic"
         label="img"
         variant="outlined"
+        value={img}
       />
       <TextField
         onChange={(e) => setAuthor(e.target.value)}
         id="outlined-basic"
         label="author"
         variant="outlined"
+        value={author}
       />
       <TextField
         onChange={(e) => setContent(e.target.value)}
         id="outlined-basic"
         label="content"
         variant="outlined"
+        value={content}
       />
       <Button onClick={handleClick} variant="contained">
         SAVE
       </Button>
+      <Comments productId={id} />
     </div>
   );
 };

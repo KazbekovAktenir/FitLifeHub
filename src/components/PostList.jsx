@@ -1,9 +1,9 @@
 import React, { useContext, useEffect } from "react";
 import PostForm from "./PostForm";
-import { postContext } from "../context/PostContextProvider";
+import { PostContext } from "../context/PostContextProvider";
 
 const PostList = () => {
-  const { posts, getPosts } = useContext(postContext);
+  const { posts, getPosts } = useContext(PostContext);
   useEffect(() => {
     getPosts();
   }, []);

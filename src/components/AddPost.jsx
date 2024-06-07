@@ -1,10 +1,10 @@
 import { Button, TextField } from "@mui/material";
 import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { postContext } from "../context/PostContextProvider";
+import { PostContext } from "../context/PostContextProvider";
 
 const AddPost = () => {
-  const { addPost } = useContext(postContext);
+  const { addPost } = useContext(PostContext);
   const [title, setTitle] = useState("");
   const [img, setImg] = useState("");
   const [author, setAuthor] = useState("");
